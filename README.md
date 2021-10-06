@@ -1,22 +1,33 @@
-## AI Deadlines [![Build Status](https://travis-ci.com/abhshkdz/ai-deadlines.svg?branch=gh-pages)](https://travis-ci.com/abhshkdz/ai-deadlines)
+# Conference Deadlines
 
-Countdown timers to keep track of a bunch of CV/NLP/ML/RO conference deadlines.
+Countdown timers to keep track of a bunch of CV/NLP/ML/RO conference deadlines available
+at [https://a-nau.github.io/conference-deadlines](https://a-nau.github.io/conference-deadlines).
+
+This is a [fork][2] with some minor changes:
+
+- change from `yaml` to `csv` since it allows easier manipulation on local machine (filtering, sorting, ...)
+- add direct link to conference website with Icons from [IcoMoon](https://icomoon.io/#icons-icomoon)
+- add display of h-index (inspiration from [ad-deadlines.com][13])
+- add display of full conference name on hover (inspiration from [ad-deadlines.com][13])
+- add display of conference ranking
+
+Potential future extension include
+
+- export of conferences dates to calendar
 
 ## Contributing
 
-[![](https://sourcerer.io/fame/abhshkdz/abhshkdz/ai-deadlines/images/0)](https://sourcerer.io/fame/abhshkdz/abhshkdz/ai-deadlines/links/0)[![](https://sourcerer.io/fame/abhshkdz/abhshkdz/ai-deadlines/images/1)](https://sourcerer.io/fame/abhshkdz/abhshkdz/ai-deadlines/links/1)[![](https://sourcerer.io/fame/abhshkdz/abhshkdz/ai-deadlines/images/2)](https://sourcerer.io/fame/abhshkdz/abhshkdz/ai-deadlines/links/2)[![](https://sourcerer.io/fame/abhshkdz/abhshkdz/ai-deadlines/images/3)](https://sourcerer.io/fame/abhshkdz/abhshkdz/ai-deadlines/links/3)[![](https://sourcerer.io/fame/abhshkdz/abhshkdz/ai-deadlines/images/4)](https://sourcerer.io/fame/abhshkdz/abhshkdz/ai-deadlines/links/4)[![](https://sourcerer.io/fame/abhshkdz/abhshkdz/ai-deadlines/images/5)](https://sourcerer.io/fame/abhshkdz/abhshkdz/ai-deadlines/links/5)[![](https://sourcerer.io/fame/abhshkdz/abhshkdz/ai-deadlines/images/6)](https://sourcerer.io/fame/abhshkdz/abhshkdz/ai-deadlines/links/6)[![](https://sourcerer.io/fame/abhshkdz/abhshkdz/ai-deadlines/images/7)](https://sourcerer.io/fame/abhshkdz/abhshkdz/ai-deadlines/links/7)
-
 Contributions are very welcome!
 
-To keep things minimal, I'm only looking to list top-tier conferences in AI as per [conferenceranks.com][6] and my judgement calls. Please feel free to maintain a separate fork if you don't see your sub-field or conference of interest listed.
-
 To add or update a deadline:
+
 - Fork the repository
-- Update `_data/conferences.yml`
+- Update `_data/conferences.csv`
 - Make sure it has the `title`, `year`, `id`, `link`, `deadline`, `timezone`, `date`, `place`, `sub` attributes
     + See available timezone strings [here](https://momentjs.com/timezone/).
 - Optionally add a `note` and `abstract_deadline` in case the conference has a separate mandatory abstract deadline
-- Optionally add `hindex` (refers to h5-index from [here](https://scholar.google.com/citations?view_op=top_venues&vq=eng))
+- Optionally add `hindex` (refers to h5-index
+  from [here](https://scholar.google.com/citations?view_op=top_venues&vq=eng))
 - Send a pull request
 
 ## Forks & other useful listings
@@ -33,7 +44,9 @@ To add or update a deadline:
 
 ## License
 
-[MIT][1]
+[AI Deadlines](https://github.com/abhshkdz/ai-deadlines): [MIT][1]
+
+[IcoMoon Icons](https://icomoon.io/#icons-icomoon): [GPL](http://www.gnu.org/licenses/gpl.html) / [CC BY4.0](http://creativecommons.org/licenses/by/4.0/)
 
 [1]: https://abhshkdz.mit-license.org/
 [2]: http://aideadlin.es/

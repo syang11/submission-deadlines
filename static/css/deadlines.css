@@ -140,6 +140,24 @@ footer {
   font-weight: 300;
 }
 
+.conf-h5 {
+  color: green;
+  background: rgba(236, 240, 241, 0.7);
+  font-size: 13px;
+  padding: 3px 5px;
+  margin-right: 8px;
+  font-weight: 300;
+}
+
+.conf-ranking {
+  color: red;
+  background: rgba(236, 240, 241, 0.7);
+  font-size: 13px;
+  padding: 3px 5px;
+  margin-right: 8px;
+  font-weight: 300;
+}
+
 .conf-sub::selection {
   background: #0097e6;
 }

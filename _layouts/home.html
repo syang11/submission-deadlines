@@ -74,7 +74,15 @@
           <div id="{{conf.id}}" class="ConfItem {% for sub in conf.sub %} {{sub}}-conf {% endfor %}">
             <div class="row conf-row">
                 <div class="col-xs-5 col-sm-6">
-                    <a class="conf-title" href="/conference?id={{ conf.id }}">{{conf.title}} {{conf.year}}</a>
+                    <span title="{{conf.name}}" class="conf-title">{{conf.title}} {{conf.year}}</span>
+                    &nbsp;
+                    <a title="Deadline Details" href="{{site.baseurl}}/conference?id={{ conf.id }}">
+                        <img src="{{site.baseurl}}/static/img/081-alarm.svg" class="removeImage" alt="Remove this image" />
+                    </a>
+                    &nbsp;
+                    <a title="Conference Website" href="{{conf.link}}" target="_blank">
+                        <img src="{{site.baseurl}}/static/img/203-earth.svg" class="removeImage" alt="Remove this image" />
+                    </a>
                 </div>
                 <div class="col-xs-7 col-sm-6">
                   <span class="timer"></span>
@@ -83,7 +91,11 @@
             <div class="row">
               <div class="col-xs-12 col-sm-6">
                 <div class="meta">
-                  <span class="conf-date">{{conf.date}}.</span>
+                    {% if conf.date %}
+                    <span class="conf-date">{{conf.date}}.</span>
+                    {% else %}
+                    <span class="conf-date">{{conf.start | date: "%-d %B %Y"}}-{{conf.end | date: "%-d %B %Y"}}.</span>
+                    {% endif %}
                   <span class="conf-place">
                     {% if conf.place == "Online" %}
                     <a href="#">{{conf.place}}</a>.
@@ -94,7 +106,7 @@
                 </div>
                 {% if conf.note %}
                 <div class="note">
-                  {{conf.note}}
+                  <b>Note:</b> {{conf.note}}
                 </div>
                 {% endif %}
               </div>
@@ -110,8 +122,14 @@
             <div class="row">
               <div class="col-xs-12">
                 {% for sub in conf.sub %}
-                <span title="Click to only show {{sub}} conferences" data-sub="{{sub}}" class="conf-sub {{sub}}-tag"></span>
+                    <span title="Click to only show {{sub}} conferences" data-sub="{{sub}}" class="conf-sub {{sub}}-tag"></span>
                 {% endfor %}
+                  {% if conf.ranking %}
+                      <span title="Conference Ranking" class="conf-ranking">{{conf.ranking}}</span>
+                  {% endif %}
+                  {% if conf.hindex %}
+                  <span title="H5 Index" class="conf-h5">{{conf.hindex}}</span>
+                  {% endif %}
               </div>
             </div>
             <hr>
@@ -125,7 +143,9 @@
           <div class="row">
             <div class="col-xs-12 col-sm-6">
               <a href="/">{{ site.domain }}</a> is maintained by <a href="https://twitter.com/{{ site.twitter_username }}">@{{ site.twitter_username }}</a>.<br>
-              If you find it useful, consider buying him <a target="_blank" href="https://read.gift/u/abhshkdz">a book</a> or <a title="_blank" href="https://www.buymeacoffee.com/abhshkdz">coffee</a>.
+                <br>
+                This is a fork from <a href="https://github.com/abhshkdz/ai-deadlines/">https://github.com/abhshkdz/ai-deadlines</a> and
+                Icons from <a href="https://icomoon.io/#icons-icomoon">IcoMoon</a> are used. See <a href="https://github.com/a-nau/conference-deadlines/tree/gh-pages#license">License</a> for details.
             </div>
           </div>
         </footer>
@@ -271,7 +291,7 @@
           }
         }
         store.set('{{ site.domain }}', subs);
-        window.history.pushState('', '', '/?sub=' + subs.join());
+        window.history.pushState('', '', '{{site.baseurl}}/?sub=' + subs.join());
 
         // Event handler on checkbox change
         $('form :checkbox').change(function(e) {
@@ -295,7 +315,7 @@
           }
           console.log(subs);
           store.set('{{ site.domain }}', subs);
-          window.history.pushState('', '', '/?sub=' + subs.join());
+          window.history.pushState('', '', '{{site.baseurl}}/?sub=' + subs.join());
         });
 
         // Event handler on sub click
@@ -312,7 +332,7 @@
           subs = [csub];
           console.log(subs);
           store.set('{{ site.domain }}', subs);
-          window.history.pushState('', '', '/?sub=' + subs.join());
+          window.history.pushState('', '', '{{site.baseurl}}/?sub=' + subs.join());
         });
     });
     <!-- Google analytics -->
