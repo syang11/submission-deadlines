@@ -20,7 +20,9 @@ body *::selection {
   width: 100%;
 }
 
-h1,h2,h3 {
+h1,
+h2,
+h3 {
   /* font-weight: 300; */
 }
 
@@ -78,7 +80,8 @@ p.lead.authors a {
   border-bottom: none;
 }
 
-a:hover, a:focus {
+a:hover,
+a:focus {
   color: inherit;
   text-decoration: none;
 }
@@ -106,12 +109,18 @@ footer {
   margin-bottom: 5px;
 }
 
-.conf-title {
+.conf-title,
+.conf-title-small {
   font-size: 20px;
   font-weight: 400;
 }
 
-.deadline, .meta {
+.conf-title-small {
+  display: none;
+}
+
+.deadline,
+.meta {
   font-size: 13px;
 }
 
@@ -120,9 +129,14 @@ footer {
   margin-bottom: 5px;
 }
 
-.timer {
+.timer,
+.timer-small {
   font-size: 20px;
   font-weight: 400;
+}
+
+.timer-small {
+  display: none;
 }
 
 #conf-timer {
@@ -167,11 +181,18 @@ footer {
   border-color: #0097e6;
 }
 
-.checkbox input[type="checkbox"]:after, .checkbox input[type="checkbox"]:focus:after {
+.checkbox input[type="checkbox"]:after,
+.checkbox input[type="checkbox"]:focus:after {
   border-color: #0097e6;
 }
 
-@media only screen and (max-width: 780px) {
+.own-badge {
+  vertical-align: top;
+  margin-top: 2px;
+  margin-left: 2px;
+}
+
+@media only screen and (max-width: 768px) {
   #conf-timer {
     font-size: 64px;
   }
@@ -180,21 +201,41 @@ footer {
   }
 }
 
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 550px) {
   #conf-timer {
     font-size: 36px;
   }
   .conf-place {
-    display: none;
+    margin-top: 1.5em;
+    /*display: none;*/
   }
   .conf-date {
-    display: none;
+    /*display: none;*/
   }
   .note {
-    display: none;
+    /*display: none;*/
+    margin-bottom: 1.5em;
   }
   .conf-row {
     margin-bottom: 7px;
+  }
+  .deadline {
+    display: none;
+  }
+  .calendar {
+    display: none;
+  }
+  .timer {
+    display: none;
+  }
+  .timer-small {
+    display: inline;
+  }
+  .conf-title {
+    display: none;
+  }
+  .conf-title-small {
+    display: inline;
   }
 }
 
