@@ -259,8 +259,12 @@
           diff = today.diff(confDate)
           $('#{{conf.id}}').attr("diff", diff)
           if (diff > 0) {
-            $('#{{conf.id}}').addClass('past');
-            $('#{{conf.id}}').appendTo($("#past_confs"))
+            if (diff > 31557600000) { // don't show confs older than 1 year
+              $('#{{conf.id}}').addClass('old-past');
+            } else {
+              $('#{{conf.id}}').addClass('past');
+              $('#{{conf.id}}').appendTo($("#past_confs"))
+            }
           }
         {% endif %}
         {% endfor %}

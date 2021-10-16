@@ -105,6 +105,10 @@ footer {
   opacity: 0.5;
 }
 
+.old-past {
+  display: none !important;
+}
+
 .conf-row {
   margin-bottom: 5px;
 }
