@@ -259,7 +259,7 @@
           diff = today.diff(confDate)
           $('#{{conf.id}}').attr("diff", diff)
           if (diff > 0) {
-            if (diff > 31557600000) { // don't show confs older than 1 year
+            if (diff > '{{site.conference_threshold_millisec}}') { // don't show confs older than 1 year
               $('#{{conf.id}}').addClass('old-past');
             } else {
               $('#{{conf.id}}').addClass('past');

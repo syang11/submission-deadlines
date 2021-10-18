@@ -10,6 +10,7 @@ twitter_hashtag: machinelearning
 github_username: a-nau
 github_repo: conference-deadlines
 
+conference_threshold_millisec: 31557600000 # show only conference with deadlines before...
 markdown: kramdown
 ga_id: UA-36274081-2
 
