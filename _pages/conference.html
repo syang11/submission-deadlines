@@ -125,7 +125,7 @@ permalink:  /conference/
               $('#conf-website').attr('href', "{{conf.link}}");
               var twitter_slug = '<a href="https://twitter.com/share" class="twitter-share-button" data-text="Countdown to the #{{ conf.title }}{{ conf.year }} deadline!" data-show-count="false" style="font-size:13px;">Tweet</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8">';
               $('#twitter-box').html(twitter_slug);
-              {% if conf.estimated == "x" %}
+              {% if conf.timezone == "estimated" %}
                   $('#conf-no-timezone').attr('style', "display: none;");
               {% else %}
                 $('#conf-estimated').attr('style', "display: none;");
