@@ -33,37 +33,49 @@ permalink:  /conference/
                     <span id="twitter-box"></span>
                   </h1>
                 </div>
-                <div class="meta deadline col-xs-12">
-                  <span id="conf-date"></span>. <span id="conf-place"></span>.<br>
-                </div>
-                <div class="meta deadline col-xs-12 col-md-5">
-                  Deadline in timezone from conference website:
-                </div>
-                <div class="meta deadline col-xs-12 col-md-6">
-                  <span class="deadline-time"></span>
-                </div>
-                <span class="local-timezone-hide">
-                  <div class="meta deadline col-xs-12 col-md-5">
-                    Deadline in your local <span class="local-timezone">America/New_York</span> timezone:
-                  </div>
-                  <div class="meta deadline col-xs-12 col-md-6">
-                    <span class="deadline-local-time"></span>
-                  </div>
-                </span>
-                <div class="meta deadline col-xs-2 col-sm-1 col-md-5">
-                  Website:
-                </div>
-                <div class="meta deadline col-xs-10 col-sm-11 col-md-7">
-                  <a id="conf-website" target="_blank" nohref></a><br>
-                </div>
-            </div>
+        <div class="meta col-xs-12">
+          <span id="conf-date"></span>. <span id="conf-place"></span>.<br>
         </div>
-        <div>
-          <div class="row">
-              <div class="col-xs-12">
-                <span id="conf-timer"></span>
-                <br>
-              </div>
+        <div class="meta col-xs-12 col-md-5">
+          Deadline in timezone from conference website:
+        </div>
+        <div class="meta col-xs-12 col-md-6">
+          <span class="deadline-time"></span>
+        </div>
+        <span class="local-timezone-hide">
+          <div class="meta col-xs-12 col-md-5">
+            Deadline in your local <span class="local-timezone">America/New_York</span> timezone:
+          </div>
+          <div class="meta col-xs-12 col-md-6">
+            <span class="deadline-local-time"></span>
+          </div>
+        </span>
+        <div class="meta col-xs-2 col-sm-1 col-md-5">
+          Website:
+        </div>
+        <div class="meta col-xs-10 col-sm-11 col-md-7">
+          <a id="conf-website" target="_blank" nohref></a><br>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="row">
+        <div class="col-xs-12">
+          <span id="conf-timer"></span>
+          <br>
+        </div>
+        <div id="conf-estimated" class="col-xs-12" style="margin-top: 30px;">
+          <img src="{{site.baseurl}}/static/img/266-question.svg" class="own-badge" alt="Remove this image"
+            height="20px"
+            style="font-size: 20px; font-weight: 400; filter: invert(46%) sepia(68%) saturate(1119%) hue-rotate(1deg) brightness(103%) contrast(95%);" />
+          Deadline only estimated!
+        </div>
+        <div id="conf-no-timezone" class="col-xs-12" style="margin-top: 30px;">
+          <img src="{{site.baseurl}}/static/img/265-notification.svg" class="own-badge" alt="Remove this image"
+            height="20px"
+            style="filter: invert(15%) sepia(94%) saturate(3919%) hue-rotate(355deg) brightness(77%) contrast(119%);" />
+          Timezone not given!
+        </div>
           </div>
           <br>
           <hr>
@@ -113,6 +125,15 @@ permalink:  /conference/
               $('#conf-website').attr('href', "{{conf.link}}");
               var twitter_slug = '<a href="https://twitter.com/share" class="twitter-share-button" data-text="Countdown to the #{{ conf.title }}{{ conf.year }} deadline!" data-show-count="false" style="font-size:13px;">Tweet</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8">';
               $('#twitter-box').html(twitter_slug);
+              {% if conf.timezone == "estimated" %}
+                  $('#conf-no-timezone').attr('style', "display: none;");
+              {% else %}
+                $('#conf-estimated').attr('style', "display: none;");
+                {% if conf.timezone %}
+                  $('#conf-no-timezone').attr('style', "display: none;");
+                {% else %}
+                {% endif %}
+              {% endif %}
               {% if conf.deadline == "TBA" %}
                 $('#conf-timer').html("TBA");
                 $('.deadline-time').html("TBA");

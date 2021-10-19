@@ -73,28 +73,38 @@
           {% for conf in site.data.conferences %}
           <div id="{{conf.id}}" class="ConfItem {% for sub in conf.sub %} {{sub}}-conf {% endfor %}">
             <div class="row conf-row">
-                <div class="col-xs-5 col-sm-6">
+                <div class="col-xs-6 col-sm-6">
                     <span title="{{conf.name}}" class="conf-title">{{conf.title}} {{conf.year}}</span>
-                    &nbsp;
+                    <span title="{{conf.name}}" class="conf-title-small">{{conf.title}} '{{conf.year | slice: -2, 3}}</span>
                     <a title="Deadline Details" href="{{site.baseurl}}/conference?id={{ conf.id }}">
-                        <img src="{{site.baseurl}}/static/img/081-alarm.svg" class="removeImage" alt="Remove this image" />
+                        <img src="{{site.baseurl}}/static/img/081-alarm.svg" class="own-badge" alt="Remove this image" />
                     </a>
-                    &nbsp;
                     <a title="Conference Website" href="{{conf.link}}" target="_blank">
-                        <img src="{{site.baseurl}}/static/img/203-earth.svg" class="removeImage" alt="Remove this image" />
+                        <img src="{{site.baseurl}}/static/img/203-earth.svg" class="own-badge" alt="Remove this image" />
                     </a>
                 </div>
-                <div class="col-xs-7 col-sm-6">
-                  <span class="timer"></span>
+                <div class="col-xs-6 col-sm-6">
+                    <span class="timer"></span>
+                    <span class="timer-small"></span>
+                    {% if conf.timezone == "estimated" %}
+                    <img title="Deadline only estimated!" src="{{site.baseurl}}/static/img/266-question.svg" class="own-badge" alt="Remove this image"
+                         height="20px" style="font-size: 20px; font-weight: 400; filter: invert(46%) sepia(68%) saturate(1119%) hue-rotate(1deg) brightness(103%) contrast(95%);"/>
+                    {% else %}
+                    {% if conf.timezone %}
+                    {% else %}
+                    <img title="Timezone not given!" src="{{site.baseurl}}/static/img/265-notification.svg" class="own-badge" alt="Remove this image"
+                        height="20px" style="filter: invert(15%) sepia(94%) saturate(3919%) hue-rotate(355deg) brightness(77%) contrast(119%);"/>
+                    {% endif %}
+                    {% endif %}
                 </div>
             </div>
             <div class="row">
               <div class="col-xs-12 col-sm-6">
                 <div class="meta">
                     {% if conf.date %}
-                    <span class="conf-date">{{conf.date}}.</span>
+                        <span class="conf-date">{{conf.date}}.</span>
                     {% else %}
-                    <span class="conf-date">{{conf.start | date: "%-d %B %Y"}}-{{conf.end | date: "%-d %B %Y"}}.</span>
+                        <span class="conf-date">{{conf.start | date: "%-d %B %Y"}}-{{conf.end | date: "%-d %B %Y"}}.</span>
                     {% endif %}
                   <span class="conf-place">
                     {% if conf.place == "Online" %}
@@ -201,12 +211,17 @@
           $('#{{conf.id}} .deadline-time').html("TBA");
         {% else %}
           // adjust date according to deadline timezone
-          var timezone = {% if conf.timezone %}"{{conf.timezone}}" {% else %} "America/New_York" {% endif %};
+          var timezone = {% if conf.timezone and conf.timezone != 'estimated' %}"{{conf.timezone}}" {% else %} "America/New_York" {% endif %};
           var confDate = moment.tz("{{conf.deadline}}", timezone);
 
           // render countdown timer
           $('#{{conf.id}} .timer').countdown(confDate.toDate(), function(event) {
             $(this).html(event.strftime('%D days %Hh %Mm %Ss'));
+          });
+
+          // render countdown timer small
+          $('#{{conf.id}} .timer-small').countdown(confDate.toDate(), function(event) {
+            $(this).html(event.strftime('%Dd %H:%M:%S'));
           });
 
           // convert deadline to local timezone
@@ -244,8 +259,12 @@
           diff = today.diff(confDate)
           $('#{{conf.id}}').attr("diff", diff)
           if (diff > 0) {
-            $('#{{conf.id}}').addClass('past');
-            $('#{{conf.id}}').appendTo($("#past_confs"))
+            if (diff > '{{site.conference_threshold_millisec}}') { // don't show confs older than 1 year
+              $('#{{conf.id}}').addClass('old-past');
+            } else {
+              $('#{{conf.id}}').addClass('past');
+              $('#{{conf.id}}').appendTo($("#past_confs"))
+            }
           }
         {% endif %}
         {% endfor %}
