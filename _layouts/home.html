@@ -83,9 +83,8 @@
                         <img src="{{site.baseurl}}/static/img/203-earth.svg" class="own-badge" alt="Remove this image" />
                     </a>
                 </div>
-                <div class="col-xs-6 col-sm-6">
+                <div id="deadline-overview" class="col-xs-6 col-sm-6">
                     <span class="timer"></span>
-                    <span class="timer-small"></span>
                     {% if conf.timezone == "estimated" %}
                     <img title="Deadline only estimated!" src="{{site.baseurl}}/static/img/266-question.svg" class="own-badge" alt="Remove this image"
                          height="20px" style="font-size: 20px; font-weight: 400; filter: invert(46%) sepia(68%) saturate(1119%) hue-rotate(1deg) brightness(103%) contrast(95%);"/>
@@ -96,6 +95,7 @@
                         height="20px" style="filter: invert(15%) sepia(94%) saturate(3919%) hue-rotate(355deg) brightness(77%) contrast(119%);"/>
                     {% endif %}
                     {% endif %}
+                    <span class="timer-small"></span>
                 </div>
             </div>
             <div class="row">
