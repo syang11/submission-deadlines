@@ -2,8 +2,8 @@ title: AI Conference Deadlines
 description: Countdowns to top CV/NLP/ML/Robotics/AI conference deadlines
 author: Alexander Naumann
 
-domain: "https://a-nau.github.io/"
-baseurl: "/conference-deadlines"
+domain: "deadlines.info"
+baseurl: ""
 
 twitter_username: AlexN4u
 twitter_hashtag: machinelearning
