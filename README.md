@@ -10,6 +10,7 @@ This is a [fork][2] with some minor changes:
 - add display of h-index (inspiration from [ad-deadlines.com][13])
 - add display of full conference name on hover (inspiration from [ad-deadlines.com][13])
 - add display of conference ranking
+- some more design changes
 
 Potential future extension include
 
@@ -33,15 +34,37 @@ To add or update a deadline:
 
 ## Usage
 
+### Host own website
+
+- fork the repo
+- adjust [`_config.yaml`](_config.yaml) with your URLs
+  ```yaml
+  domain: "https://<user-name>.github.io/"
+  baseurl: "/<repo-name>"
+  ```
+- remove [`CNAME`](CNAME)
+- adjust the [`_data/conferences.csv`](_data/conferences.csv)
+- if you want a domain different from Github, check [this](https://dafero.wordpress.com/2020/02/19/how-to-configure-github-pages-with-a-custom-ionos-old-11-domain/)
+
 ### Locally
 
-```shell
-docker build -t jekyll-cd .
-```
+To test/develop the site locally with Docker:
 
-```shell
-docker run --mount type=bind,source=${PWD},target=/app -p 4000:4000 -it --rm --name conference-deadlines jekyll-cd
-```
+- Build
+
+  ```shell
+  docker build -t jekyll-cd .
+  ```
+
+- Run
+  - Linux
+    ```shell
+    docker run --mount type=bind,source=${PWD},target=/app -p 4000:4000 -it --rm --name conference-deadlines jekyll-cd
+    ```
+  - Windows
+    ```shell
+    docker run --mount type=bind,source=%cd%,target=/app -p 4000:4000 -it --rm --name conference-deadlines jekyll-cd
+    ```
 
 ## License
 
