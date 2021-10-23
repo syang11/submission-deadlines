@@ -1,0 +1,130 @@
+---
+layout: base
+---
+
+<head>
+  {% include head.html %}
+</head>
+
+<body>
+
+  {% include header.html %}
+  <div class="container">
+    <br>
+    <h1>Calender Overview of Conference Deadlines and Dates</h1>
+    <br>
+    {% include calendar.html %}
+    <footer>
+      {% include footer.html %}
+    </footer>
+
+  </div>
+
+
+
+  <script type="text/javascript" charset="utf-8">
+    let calendar = null;
+
+    $(function () {
+      // Gather data
+      var conf_list = [];
+      {% for conf in site.data.conferences %}
+      // add deadlines
+      var confInfo = {
+        id: "{{conf.id}}",
+        name: "{{conf.title}} {{conf.year}}",
+        color: "red",
+        location: "{{conf.place}}",
+        date: "{{conf.date}}",
+        startDate: Date.parse("{{conf.deadline}}"),
+        endDate: Date.parse("{{conf.deadline}}"),
+      };
+      conf_list.push(confInfo);
+
+      // add Conferences
+      {% if conf.start != "" %}
+      var color = "black";
+      {% for type in site.data.types %}
+      {% if conf.sub == type.sub %}
+      color = "{{type.color}}";
+      {% endif %}
+      {% endfor %}
+      var confInfo = {
+        id: "{{conf.id}}",
+        name: "{{conf.title}} {{conf.year}}",
+        color: color,
+        location: "{{conf.place}}",
+        date: "{{conf.date}}",
+        startDate: Date.parse("{{conf.start}}"),
+        endDate: Date.parse("{{conf.end}}"),
+      };
+      conf_list.push(confInfo);
+      {% endif %}
+      {% endfor %}
+
+
+
+      var currentYear = new Date().getFullYear();
+      var today = new Date();
+
+      calendar = new Calendar("#calendar-page", {
+        clickDay: function (e) {
+          console.log(e);
+          if (e.events.length > 0) {
+            for (var i in e.events) {
+              window.open("{{site.baseurl}}/conference?id=" + e.events[i].id, "_self")
+            }
+          }
+        },
+        mouseOnDay: function (e) {
+          if (e.events.length > 0) {
+            var content = "";
+
+            for (var i in e.events) {
+              content +=
+                '<div class="event-tooltip-content">' +
+                '<div class="event-name" style="color:' +
+                e.events[i].color +
+                '">' +
+                e.events[i].name +
+                "</div>" +
+                '<div class="event-location">' +
+                '<img src="{{site.baseurl}}/static/img/072-location.svg" className="own-badge"/>&nbsp;' +
+                e.events[i].location +
+                '<br>' +
+                '<img src="{{site.baseurl}}/static/img/084-calendar.svg" className="own-badge"/>&nbsp;' +
+                e.events[i].date +
+                "</div>" +
+                "</div>";
+            }
+
+            $(e.element).popover({
+              trigger: "manual",
+              container: "body",
+              html: true,
+              content: content,
+            });
+
+            $(e.element).popover("show");
+          }
+        },
+        mouseOutDay: function (e) {
+          if (e.events.length > 0) {
+            $(e.element).popover("hide");
+          }
+        },
+        customDayRenderer: function (cellContent, currentDate) {
+          // render today
+          if (today.getFullYear() === currentDate.getFullYear() && today.getMonth() === currentDate.getMonth() && today.getDate() === currentDate.getDate()) {
+            cellContent.style = "background-color: gray;";
+          }
+        },
+        dayContextMenu: function (e) {
+          $(e.element).popover("hide");
+        },
+        dataSource: conf_list
+      });
+    });
+    {% include google_analytics.html %}
+  </script>
+</body>

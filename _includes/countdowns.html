@@ -1,0 +1,136 @@
+<div class="page-header">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12">
+            <h1>
+                {{ site.title }}
+            </h1>
+        </div>
+        <div class="meta col-sm-12">
+            {{ site.description }}.
+            To add/edit a conference, <a target="_blank"
+                href="//github.com/{{ site.github_username }}/{{ site.github_repo }}">send in a pull request</a>.
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="column col-12">
+            <!-- <div class="well"> -->
+            <form class="row">
+                {% for type in site.data.types %}
+                <div class="col-6 col-sm-4">
+                    <label>
+                        <input type="checkbox" id="{{ type.sub }}-checkbox" class=""> {{ type.name }}
+                    </label>
+                </div>
+                {% endfor %}
+            </form>
+            <!-- </div> -->
+        </div>
+    </div>
+    <div class="row">
+        <div class="meta col-sm-12">
+            <span class="local-timezone-hide">
+                Deadlines are shown in <span class="local-timezone">America/New_York</span> time.
+                To view them in conference website timezones, click on them.
+            </span>
+        </div>
+        <div class="meta col-sm-12">
+            You can optionally export all deadlines to
+            <a href="https://calendar.google.com/calendar/r?cid={{ site.url }}/ai-deadlines.ics">Google Calendar</a> or
+            <a href="/ai-deadlines.ics">.ics</a>.
+            <br><br>
+        </div>
+    </div>
+</div>
+<br>
+<h2>
+    Conference Deadline Countdowns
+</h2>
+<br>
+<div id="confs">
+    <div id="coming_confs">
+        {% for conf in site.data.conferences %}
+        <div id="{{conf.id}}" class="ConfItem {% for sub in conf.sub %} {{sub}}-conf {% endfor %}">
+            <div class="row conf-row">
+                <div class="col-xs-6 col-sm-6">
+                    <span title="{{conf.name}}" class="conf-title">{{conf.title}} {{conf.year}}</span>
+                    <span title="{{conf.name}}" class="conf-title-small">{{conf.title}} '{{conf.year | slice: -2,
+                        3}}</span>
+                    <a title="Deadline Details" href="{{site.baseurl}}/conference?id={{ conf.id }}">
+                        <img src="{{site.baseurl}}/static/img/081-alarm.svg" class="own-badge"
+                            alt="Remove this image" />
+                    </a>
+                    <a title="Conference Website" href="{{conf.link}}" target="_blank">
+                        <img src="{{site.baseurl}}/static/img/203-earth.svg" class="own-badge"
+                            alt="Remove this image" />
+                    </a>
+                </div>
+                <div id="deadline-overview" class="col-xs-6 col-sm-6">
+                    <span class="timer"></span>
+                    {% if conf.timezone == "estimated" %}
+                    <img title="Deadline only estimated!" src="{{site.baseurl}}/static/img/266-question.svg"
+                        class="own-badge" alt="Remove this image" height="20px"
+                        style="font-size: 20px; font-weight: 400; filter: invert(46%) sepia(68%) saturate(1119%) hue-rotate(1deg) brightness(103%) contrast(95%);" />
+                    {% else %}
+                    {% if conf.timezone %}
+                    {% else %}
+                    <img title="Timezone not given!" src="{{site.baseurl}}/static/img/265-notification.svg"
+                        class="own-badge" alt="Remove this image" height="20px"
+                        style="filter: invert(15%) sepia(94%) saturate(3919%) hue-rotate(355deg) brightness(77%) contrast(119%);" />
+                    {% endif %}
+                    {% endif %}
+                    <span class="timer-small"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-6">
+                    <div class="meta">
+                        {% if conf.date %}
+                        <span class="conf-date">{{conf.date}}.</span>
+                        {% else %}
+                        <span class="conf-date">{{conf.start | date: "%-d %B %Y"}}-{{conf.end | date: "%-d %B
+                            %Y"}}.</span>
+                        {% endif %}
+                        <span class="conf-place">
+                            {% if conf.place == "Online" %}
+                            <a href="#">{{conf.place}}</a>.
+                            {% else %}
+                            <a href="http://maps.google.com/?q={{conf.place}}">{{conf.place}}</a>.
+                            {% endif %}
+                        </span>
+                    </div>
+                    {% if conf.note %}
+                    <div class="note">
+                        <b>Note:</b> {{conf.note}}
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    <div class="deadline">
+                        <div>Deadline:
+                            <span class="deadline-time"></span>
+                        </div>
+                    </div>
+                    <div class="calendar"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    {% for sub in conf.sub %}
+                    <span title="Click to only show {{sub}} conferences" data-sub="{{sub}}"
+                        class="conf-sub {{sub}}-tag"></span>
+                    {% endfor %}
+                    {% if conf.ranking %}
+                    <span title="Conference Ranking" class="conf-ranking">{{conf.ranking}}</span>
+                    {% endif %}
+                    {% if conf.hindex %}
+                    <span title="H5 Index" class="conf-h5">{{conf.hindex}}</span>
+                    {% endif %}
+                </div>
+            </div>
+            <hr>
+        </div>
+        {% endfor %}
+    </div>
+    <div id="past_confs">
+    </div>

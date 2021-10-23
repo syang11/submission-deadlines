@@ -1,7 +1,7 @@
-name,sub
-Machine Learning,ML
-Computer Vision,CV
-Natural Language Proc,NLP
-Robotics,RO
-Speech/SigProc,SP
-Data Mining,DM
+name,sub,color
+Machine Learning,ML,#a0c4ff
+Computer Vision,CV,#9bf6ff
+Natural Language Proc,NLP,#ffd6a5
+Robotics,RO,#caffbf
+Speech/SigProc,SP,#ffc6ff
+Data Mining,DM,#bdb2ff
