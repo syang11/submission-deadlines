@@ -1,20 +1,17 @@
 # Conference Deadlines
 
 Countdown timers to keep track of a bunch of CV/NLP/ML/RO conference deadlines available
-at [https://a-nau.github.io/conference-deadlines](https://a-nau.github.io/conference-deadlines).
+at [https://deadlines.info](https://deadlines.info).
 
-This is a [fork][2] with some minor changes:
+This is a [fork][2] with the following changes:
 
 - change from `yaml` to `csv` since it allows easier manipulation on local machine (filtering, sorting, ...)
-- add direct link to conference website with Icons from [IcoMoon](https://icomoon.io/#icons-icomoon)
-- add display of h-index (inspiration from [ad-deadlines.com][13])
-- add display of full conference name on hover (inspiration from [ad-deadlines.com][13])
-- add display of conference ranking
-- some more design changes
-
-Potential future extension include
-
-- export of conferences dates to calendar
+- add calendar overview for deadlines and conference dates (see [here](https://deadlines.info/calendar))
+- some design changes, e.g.
+  - add direct link to conference website with Icons from [IcoMoon](https://icomoon.io/#icons-icomoon)
+  - add display of h-index (inspiration from [ad-deadlines.com][13])
+  - add display of full conference name on hover (inspiration from [ad-deadlines.com][13])
+  - add display of conference ranking
 
 ## Contributing
 
@@ -22,7 +19,7 @@ Contributions are very welcome!
 
 To add or update a deadline:
 
-- Fork the repository
+- Fork the repository (you can also press `.` to open this repo in VS Code in your browser)
 - Update [`_data/conferences.csv`](_data/conferences.csv)
 - Make sure it has the `title`, `year`, `id`, `link`, `deadline`, `timezone`, `date`, `place`, `sub` attributes
   - See available timezone strings [here](https://momentjs.com/timezone/).
@@ -57,14 +54,9 @@ To test/develop the site locally with Docker:
   ```
 
 - Run
-  - Linux
-    ```shell
-    docker run --mount type=bind,source=${PWD},target=/app -p 4000:4000 -it --rm --name conference-deadlines jekyll-cd
-    ```
-  - Windows
-    ```shell
-    docker run --mount type=bind,source=%cd%,target=/app -p 4000:4000 -it --rm --name conference-deadlines jekyll-cd
-    ```
+  ```shell
+  docker run --mount type=bind,source=${PWD},target=/app -p 4000:4000 -it --rm --name conference-deadlines jekyll-cd
+  ```
 
 ## License
 

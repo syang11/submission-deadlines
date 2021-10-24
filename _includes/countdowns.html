@@ -14,7 +14,6 @@
     <br>
     <div class="row">
         <div class="column col-12">
-            <!-- <div class="well"> -->
             <form class="row">
                 {% for type in site.data.types %}
                 <div class="col-6 col-sm-4">
@@ -24,7 +23,6 @@
                 </div>
                 {% endfor %}
             </form>
-            <!-- </div> -->
         </div>
     </div>
     <div class="row">
@@ -52,7 +50,7 @@
         {% for conf in site.data.conferences %}
         <div id="{{conf.id}}" class="ConfItem {% for sub in conf.sub %} {{sub}}-conf {% endfor %}">
             <div class="row conf-row">
-                <div class="col-xs-6 col-sm-6">
+                <div class="col-6">
                     <span title="{{conf.name}}" class="conf-title">{{conf.title}} {{conf.year}}</span>
                     <span title="{{conf.name}}" class="conf-title-small">{{conf.title}} '{{conf.year | slice: -2,
                         3}}</span>
@@ -65,7 +63,7 @@
                             alt="Remove this image" />
                     </a>
                 </div>
-                <div id="deadline-overview" class="col-xs-6 col-sm-6">
+                <div id="deadline-overview" class="col-6">
                     <span class="timer"></span>
                     {% if conf.timezone == "estimated" %}
                     <img title="Deadline only estimated!" src="{{site.baseurl}}/static/img/266-question.svg"

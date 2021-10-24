@@ -6,6 +6,4 @@ COPY . ./
 
 EXPOSE 4000
 
-RUN jekyll build
-
 CMD ["jekyll", "serve"]
