@@ -1,6 +1,7 @@
 ---
 layout: base
 image: /static/img/notebook-428293_1920.jpg
+permalink: /calendar/
 ---
 
 <head>
@@ -32,7 +33,7 @@ image: /static/img/notebook-428293_1920.jpg
     // calendar data template
     var calendar_data = {
       clickDay: function (e) {
-        console.log(e);
+        // console.log(e);
         if (e.events.length > 0) {
           for (var i in e.events) {
             window.open("{{site.baseurl}}/conference?id=" + e.events[i].abbreviation, "_self")
@@ -150,7 +151,7 @@ image: /static/img/notebook-428293_1920.jpg
         if (subs.length == 0) {
           window.history.pushState('', '', page_url + "/?ranking=" + data.rankings.join());
         } else {
-          window.history.pushState('', '', page_url + '/?sub=' + data.subs.join() + "&?ranking=" + data.rankings.join());
+          window.history.pushState('', '', page_url + '/?sub=' + data.subs.join() + "&ranking=" + data.rankings.join());
         }
 
       }

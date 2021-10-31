@@ -50,7 +50,7 @@ image: /static/img/notebook-428293_1920.jpg
                 if (subs.length == 0) {
                     window.history.pushState('', '', '{{site.baseurl}}/' + "?ranking=" + data.rankings.join());
                 } else {
-                    window.history.pushState('', '', '{{site.baseurl}}/?sub=' + data.subs.join() + "&?ranking=" + data.rankings.join());
+                    window.history.pushState('', '', '{{site.baseurl}}/?sub=' + data.subs.join() + "&ranking=" + data.rankings.join());
                 }
 
             }

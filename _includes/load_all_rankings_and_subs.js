@@ -19,6 +19,6 @@ for (var i = 0; i < conf_ranking_data.length; i++) {
 }
 const all_subs = _all_subs;
 const all_rankings = _all_rankings;
-console.log("Subs: " + all_subs);
-console.log("Rankings: " + all_rankings);
+// console.log("Subs: " + all_subs);
+// console.log("Rankings: " + all_rankings);
 
