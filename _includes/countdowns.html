@@ -6,57 +6,50 @@
             </h1>
         </div>
         <div class="meta col-sm-12">
-            {{ site.description }}.
-            To add/edit a conference, <a target="_blank"
-                href="//github.com/{{ site.github_username }}/{{ site.github_repo }}">send in a pull request</a>.
+            Countdowns to CV/NLP/ML/Robotics/AI conference deadlines.
+            Also, an overview of deadlines and conference dates in a <a href="/calendar">calendar</a>.
+            You can download all deadlines and conference dates easily.
+            You're very welcome to contribute <a target="_blank"
+                href="//github.com/{{ site.github_username }}/{{ site.github_repo }}">here</a>
+            and for more information click <a data-toggle="modal" data-target="#staticBackdrop"
+                style="cursor: pointer;">here</a>.
         </div>
+        <br>
+        {% include information.html %}
     </div>
+
     <br>
-    <div class="row">
-        <div class="column col-12">
-            <form class="row">
-                {% for type in site.data.types %}
-                <div class="col-6 col-sm-4">
-                    <label>
-                        <input type="checkbox" id="{{ type.sub }}-checkbox" class=""> {{ type.name }}
-                    </label>
-                </div>
-                {% endfor %}
-            </form>
-        </div>
-    </div>
+    <!-- <h2>Filter Conference Deadlines</h2> -->
+    {% include filter_form.html %}
     <div class="row">
         <div class="meta col-sm-12">
-            <span class="local-timezone-hide">
-                Deadlines are shown in <span class="local-timezone">America/New_York</span> time.
-                To view them in conference website timezones, click on them.
-            </span>
         </div>
         <div class="meta col-sm-12">
-            You can optionally export all deadlines to
-            <a href="https://calendar.google.com/calendar/r?cid={{ site.url }}/ai-deadlines.ics">Google Calendar</a> or
-            <a href="/ai-deadlines.ics">.ics</a>.
-            <br><br>
         </div>
     </div>
 </div>
-<br>
-<h2>
-    Conference Deadline Countdowns
-</h2>
-<br>
-<div id="confs">
+<div class="" id="confs">
+    <h2>
+        Conference Deadline Countdowns
+    </h2>
+    <h6>
+        (Timezone: <span class="local-timezone">America/New_York</span>;
+        Add/edit a conference <a target="_blank"
+            href="//github.com/{{ site.github_username }}/{{ site.github_repo }}">here</a>)
+    </h6>
+    <br>
     <div id="coming_confs">
         {% for conf in site.data.conferences %}
-        <div id="{{conf.id}}" class="ConfItem {% for sub in conf.sub %} {{sub}}-conf {% endfor %}">
+        {% assign subs = conf.sub | split: "," %}
+        <div id="{{conf.id}}" class="ConfItem {% for sub in subs %} {{sub | strip }}-conf {% endfor %} 
+            {%if conf.ranking %}{{conf.ranking}}{%else%}NA{%endif%}-ranking">
             <div class="row conf-row">
                 <div class="col-6">
                     <span title="{{conf.name}}" class="conf-title">{{conf.title}} {{conf.year}}</span>
                     <span title="{{conf.name}}" class="conf-title-small">{{conf.title}} '{{conf.year | slice: -2,
                         3}}</span>
                     <a title="Deadline Details" href="{{site.baseurl}}/conference?id={{ conf.id }}">
-                        <img src="{{site.baseurl}}/static/img/081-alarm.svg" class="own-badge"
-                            alt="Remove this image" />
+                        <img src="{{site.baseurl}}/static/img/269-info.svg" class="own-badge" alt="Remove this image" />
                     </a>
                     <a title="Conference Website" href="{{conf.link}}" target="_blank">
                         <img src="{{site.baseurl}}/static/img/203-earth.svg" class="own-badge"
@@ -70,7 +63,7 @@
                         class="own-badge" alt="Remove this image" height="20px"
                         style="font-size: 20px; font-weight: 400; filter: invert(46%) sepia(68%) saturate(1119%) hue-rotate(1deg) brightness(103%) contrast(95%);" />
                     {% else %}
-                    {% if conf.timezone %}
+                    {% if conf.timezone or conf.deadline == "TBA" %}
                     {% else %}
                     <img title="Timezone not given!" src="{{site.baseurl}}/static/img/265-notification.svg"
                         class="own-badge" alt="Remove this image" height="20px"
@@ -114,12 +107,14 @@
             </div>
             <div class="row">
                 <div class="col-sm-12">
-                    {% for sub in conf.sub %}
-                    <span title="Click to only show {{sub}} conferences" data-sub="{{sub}}"
-                        class="conf-sub {{sub}}-tag"></span>
+                    {% for sub in subs %}
+                    {% assign sub_striped = sub | strip %}
+                    <span title="Click to only show {{sub_striped}} conferences" data-sub="{{sub_striped}}"
+                        class="conf-sub {{sub_striped}}-tag"></span>
                     {% endfor %}
                     {% if conf.ranking %}
-                    <span title="Conference Ranking" class="conf-ranking">{{conf.ranking}}</span>
+                    <span title="Click to only show {{conf.ranking}} conferences" class="conf-ranking"
+                        data-ranking="{{conf.ranking}}">{{conf.ranking}}</span>
                     {% endif %}
                     {% if conf.hindex %}
                     <span title="H5 Index" class="conf-h5">{{conf.hindex}}</span>
@@ -130,5 +125,26 @@
         </div>
         {% endfor %}
     </div>
-    <div id="past_confs">
+</div>
+
+<br>
+<div class="accordion" id="accordionExample">
+    <div>
+        <div id="headingOne" style="margin-bottom: 10px;">
+            <h2 class="mb-0" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                aria-controls="collapseOne">
+                Past Conference Deadlines
+                <span style="font-size: 13px;">
+                    (Click to view)
+                </span>
+            </h2>
+        </div>
+        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <hr>
+            <div id="past_confs">
+            </div>
+        </div>
     </div>
+</div>
+<br>
+<hr>

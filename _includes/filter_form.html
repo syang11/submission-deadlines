@@ -1,0 +1,38 @@
+<form class="container">
+        <div class="row justify-content-center">
+                <div class="row align-items-md-center col-12 col-10-md">
+                        <div class="col-12 col-md-5 filter-label">
+                                <label for="subject-select" class="form-label align-center">
+                                        Subject Filter:
+                                </label>
+                        </div>
+                        <div class="col-12 col-md-6">
+                                <select id="subject-select" name="subject-select" multiple="multiple"
+                                        style="display: none;">
+                                        {% for type in site.data.types %}
+                                        <option value="{{type.sub}}" id="{{type.sub}}-checkbox">
+                                                {{type.name}} ({{type.sub}})
+                                        </option>
+                                        {% endfor %}
+                                </select>
+                        </div>
+                </div>
+                <div class="row align-items-md-center col-12 col-10-md">
+                        <div class="col-12 col-md-5 filter-label">
+                                <label for="ranking-select" class="form-label">
+                                        Ranking Filter:
+                                </label>
+                        </div>
+                        <div class="col-12 col-md-6">
+                                <select id="ranking-select" name="ranking-select" multiple="multiple"
+                                        style="display: none;">
+                                        {% for ranking in site.data.rankings %}
+                                        <option value="{{ranking.ranking}}" id="ranking-{{ranking.ranking}}-checkbox">
+                                                {{ranking.ranking}} Ranking
+                                        </option>
+                                        {% endfor %}
+                                </select>
+                        </div>
+                </div>
+        </div>
+</form>

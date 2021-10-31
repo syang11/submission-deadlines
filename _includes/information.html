@@ -1,0 +1,78 @@
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                        <div class="modal-header">
+                                <h5 class="modal-title" id="staticBackdropLabel">
+                                        Features of Deadlines.info
+                                </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                </button>
+                        </div>
+                        <div class="modal-body">
+                                <b>Countdown view</b> (<a href="/">click here</a>)
+                                <ul>
+                                        <li>
+                                                To view deadlines in more detail, click on the icon
+                                                <img src="{{site.baseurl}}/static/img/269-info.svg" class="own-badge"
+                                                        alt="Remove this image" />.
+                                                Deadline in different timezones and calendar downloads are available.
+                                        </li>
+                                        <li>
+                                                You can directly access the conference website by clicking the icon
+                                                <img src="{{site.baseurl}}/static/img/203-earth.svg"
+                                                        class="own-badge" />.
+                                        </li>
+                                        <li>
+                                                You can download the deadline to import it into your calendar.
+                                        </li>
+                                        <li>
+                                                You can filter by using the dropdown menus or by clicking on the badges
+                                                below each conference deadline.
+                                        </li>
+                                </ul>
+                                <b>Calendar view</b> (<a href="/calendar">click here</a>)
+                                <ul>
+                                        <li>
+                                                You can click on a date to
+                                                show the detailed conference pages. Note, that currently this only works
+                                                if only one event takes place on that date.
+                                        </li>
+                                </ul>
+                                <b>General</b>
+                                <ul>
+                                        <li>
+                                                On each conference specific website, you can download the conference
+                                                deadline and dates for your calendar.
+                                        </li>
+                                        <li>
+                                                You can optionally export all deadlines to
+                                                <a
+                                                        href="https://calendar.google.com/calendar/r?cid={{ site.url }}/ai-deadlines.ics">Google
+                                                        Calendar</a>
+                                                or <a href="/ai-deadlines.ics">.ics</a>.
+                                        </li>
+                                        <li>
+                                                <span class="local-timezone-hide">
+                                                        Deadlines are shown in
+                                                        <span class="local-timezone">America/New_York</span> time.
+                                                </span>
+                                        </li>
+                                        <li>
+                                                To add/edit a conference,
+                                                <a target="_blank"
+                                                        href="//github.com/{{ site.github_username }}/{{ site.github_repo }}">send
+                                                        in a pull request</a>.
+                                        </li>
+                                </ul>
+                        </div>
+                        <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                        Close
+                                </button>
+                        </div>
+                </div>
+        </div>
+</div>

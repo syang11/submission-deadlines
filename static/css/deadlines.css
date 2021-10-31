@@ -147,11 +147,13 @@ footer {
   color: #444;
 }
 
-.conf-sub {
+.conf-sub,
+.conf-h5,
+.conf-ranking {
   color: rgb(36, 101, 191);
   background: rgba(236, 240, 241, 0.7);
   font-size: 13px;
-  padding: 3px 5px;
+  padding: 2px 5px;
   margin-right: 8px;
   cursor: pointer;
   font-weight: 300;
@@ -159,20 +161,15 @@ footer {
 
 .conf-h5 {
   color: green;
-  background: rgba(236, 240, 241, 0.7);
-  font-size: 13px;
-  padding: 3px 5px;
-  margin-right: 8px;
-  font-weight: 300;
+  cursor: default;
 }
 
 .conf-ranking {
   color: red;
-  background: rgba(236, 240, 241, 0.7);
-  font-size: 13px;
-  padding: 3px 5px;
-  margin-right: 8px;
-  font-weight: 300;
+}
+
+.conf-badge-small {
+  padding: 0px 5px;
 }
 
 .conf-sub::selection {
@@ -196,12 +193,35 @@ footer {
   margin-right: 2px;
 }
 
+#impressum {
+  text-align: right;
+}
+
+.filter-label {
+  text-align: right;
+}
+
+.deadline-text {
+  color: red;
+}
+
+.event-name {
+  /* background-color: red; */
+}
+
+.event-tooltip-content {
+  /* margin-bottom: 3px; */
+}
+
 @media only screen and (max-width: 768px) {
   #conf-timer {
     font-size: 64px;
   }
   .calendar {
     margin-bottom: 10px;
+  }
+  .filter-label {
+    text-align: left;
   }
 }
 
@@ -244,6 +264,13 @@ footer {
     /* margin-left: auto; */
     /* margin-right: 0; */
     text-align: right;
+  }
+  #impressum {
+    text-align: left;
+  }
+  #conference-deadline,
+  #conference-dates {
+    display: inline;
   }
 }
 

@@ -22,9 +22,16 @@ permalink: /conference/
           <h3>
             <span id="conf-title-long"></span>
           </h3>
-          <br>
         </div>
       </div>
+      <div class="row" style="margin-top: 5px;">
+        <div class="col-sm-12">
+          <span id="conf-subs" title="Conference subjects"></span>
+          <span id="conf-ranking" title="Conference ranking" class="conf-ranking"></span>
+          <span id="conf-h5" title="H5 Index" class="conf-h5"></span>
+        </div>
+      </div>
+      <br>
       <div class="row">
         <div class="meta col-sm-12">
           <img src="{{site.baseurl}}/static/img/084-calendar.svg" className="own-badge" />
@@ -35,6 +42,23 @@ permalink: /conference/
           <a id="conf-website" target="_blank" nohref></a><br>
           <br><br>
         </div>
+      </div>
+      <div class="row ">
+        <div class="meta col-sm-12 col-md-6">
+          Download Conference deadline:
+        </div>
+        <div id="conference-deadline" class="calendar"
+          style="margin: 0px; margin-left: 15px; font-size: 13px; padding: 0px;">
+        </div>
+        <div class="meta col-sm-12 col-md-6">
+          Download Conference dates:
+        </div>
+        <div id="conference-dates" class="calendar"
+          style="margin: 0px; margin-left: 15px; font-size: 13px; padding: 0px;">
+        </div>
+      </div>
+      <br>
+      <div class="row">
         <div class="meta col-sm-12 col-md-6">
           Deadline in timezone from conference website:
         </div>
@@ -107,10 +131,33 @@ permalink: /conference/
         $('.local-timezone-hide').hide();
       }
 
+      {% include load_all_rankings_and_subs.js %}
+
       {% for conf in site.data.conferences %}
-      if (conf == "{{ conf.id }}") {
+      if (conf == "{{ conf.id }}") { //find current conference
+        // set title
         $('#conf-title-href').text("{{conf.title}} {{conf.year}}");
         $('#conf-title-long').text("{{conf.name}}");
+        // set badges
+        var subs = '{{conf.sub}}'.split(',');
+        for (let i = 0; i < subs.length; i++) {
+          var sub = subs[i].replace(" ", "");
+          var sub_element = document.createElement('span');
+          sub_element.className = "conf-sub conf-" + sub;
+          sub_element.textContent = sub2name[sub];
+          $('#conf-subs').append(sub_element);
+        }
+        if ("{{conf.hindex}}" == "") {
+          $('#conf-h5').hide();
+        } else {
+          $('#conf-h5').text("{{conf.hindex}}");
+        }
+        if ("{{conf.ranking}}" == "") {
+          $('#conf-ranking').hide();
+        } else {
+          $('#conf-ranking').text("{{conf.ranking}}");
+        }
+        // date, place, links
         $('#conf-date').text("{{conf.date}}");
         $('#conf-place').text("{{conf.place}}");
         $('#conf-website').text("{{conf.link}}");
@@ -130,20 +177,50 @@ permalink: /conference/
         $('#conf-timer').html("TBA");
         $('.deadline-time').html("TBA");
         $('.deadline-local-time').html("TBA");
+        $('#conf-no-timezone').attr('style', "display: none;");
         {% else %}
         // adjust date according to deadline timezone
         var timezone = {% if conf.timezone %} "{{conf.timezone}}" {% else %} "America/New_York" {% endif %};
-      var confDate = moment.tz("{{conf.deadline}}", timezone);
+
+      // Add calendar download
+      var confDeadline = moment.tz("{{conf.deadline}}", timezone);
+      var conferenceDeadlineCalendar = createCalendar({
+        options: {
+          class: 'calendar-obj',
+        },
+        data: {
+          title: '{{conf.title}} {{conf.year}} deadline',
+          start: confDeadline.toDate(),
+          duration: 60,
+        }
+      });
+      document.querySelector('#conference-deadline').appendChild(conferenceDeadlineCalendar);
+
+
+      // Add calendar download for conference dates
+      var confStartDate = moment.tz("{{conf.start}} 09:01", timezone);
+      var confEndDate = moment.tz("{{conf.end}} 16:00", timezone);
+      var conferenceDatesCalendar = createCalendar({
+        options: {
+          class: 'calendar-obj',
+        },
+        data: {
+          title: 'Conference: {{conf.title}} {{conf.year}}',
+          start: confStartDate.toDate(),
+          end: confEndDate.toDate(),
+        }
+      });
+      document.querySelector('#conference-dates').appendChild(conferenceDatesCalendar);
 
       // render countdown timer
-      $('#conf-timer').countdown(confDate.toDate(), function (event) {
+      $('#conf-timer').countdown(confDeadline.toDate(), function (event) {
         $(this).html(event.strftime('%D days %Hh %Mm %Ss'));
       });
-      $('.deadline-time').html(confDate.toString());
+      $('.deadline-time').html(confDeadline.toString());
 
       // convert deadline to local timezone
       try {
-        var localConfDate = moment.tz(confDate, local_timezone);
+        var localConfDate = moment.tz(confDeadline, local_timezone);
         $('.deadline-local-time').html(localConfDate.toString());
       }
       catch (err) {
@@ -151,9 +228,9 @@ permalink: /conference/
       }
       {% endif %}
     }
-        {% endfor %}
+    {% endfor %}
     });
-    {% include google_analytics.html %}
+    {% include google_analytics.js %}
   </script>
 </body>
 

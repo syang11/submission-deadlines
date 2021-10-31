@@ -9,8 +9,7 @@ This is a [fork][2] with the following changes:
 - add calendar overview for deadlines and conference dates (see [here](https://deadlines.info/calendar))
 - some design changes, e.g.
   - add direct link to conference website with Icons from [IcoMoon](https://icomoon.io/#icons-icomoon)
-  - add display of h-index (inspiration from [ad-deadlines.com][13])
-  - add display of full conference name on hover (inspiration from [ad-deadlines.com][13])
+  - add display of h-index and display of full conference name on hover (inspiration from [ad-deadlines.com][13])
   - add display of conference ranking
 
 ## Contributing
@@ -20,13 +19,14 @@ Contributions are very welcome!
 To add or update a deadline:
 
 - Fork the repository (you can also press `.` to open this repo in VS Code in your browser)
-- Update [`_data/conferences.csv`](_data/conferences.csv)
+- Update [`_data/conferences.csv`](_data/conferences.csv) (best done with MS Excel or similar)
 - Make sure it has the `title`, `year`, `id`, `link`, `deadline`, `timezone`, `date`, `place`, `sub` attributes
   - See available timezone strings [here](https://momentjs.com/timezone/).
 - Optionally add a `note` and `abstract_deadline` in case the conference has a separate mandatory abstract deadline
 - Optionally add `hindex` (refers to h5-index
-  from [here](https://scholar.google.com/citations?view_op=top_venues&vq=eng))
-- Optionally add `ranking` from [here](http://www.conferenceranks.com/)
+  from [Google](https://scholar.google.com/citations?view_op=top_venues&vq=eng)) or [Guide2Research](https://research.com/conference-rankings/computer-science/2021/machine-learning)
+- Optionally add `ranking` from [conference ranks](http://www.conferenceranks.com/)
+- sort data ascending by deadline
 - Send a pull request
 
 ## Usage
@@ -34,12 +34,13 @@ To add or update a deadline:
 ### Host own website
 
 - fork the repo
-- adjust [`_config.yaml`](_config.yaml) with your URLs
+- adjust [`_config.yml`](_config.yml) with your URLs
   ```yaml
   domain: "https://<user-name>.github.io/"
   baseurl: "/<repo-name>"
   ```
 - remove [`CNAME`](CNAME)
+- adjust or remove [Impressum](impressum.html)
 - adjust the [`_data/conferences.csv`](_data/conferences.csv)
 - if you want a domain different from Github, check [this](https://dafero.wordpress.com/2020/02/19/how-to-configure-github-pages-with-a-custom-ionos-old-11-domain/)
 
