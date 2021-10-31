@@ -43,7 +43,8 @@
                         });
                         return labels.join(', ') + '';
                     }
-                }
+                },
+                buttonTitle: function(options, select) {return ""},
             });
             $('#subject-select').multiselect({
                 includeSelectAllOption: true,
@@ -90,6 +91,7 @@
                         });
                         return labels.join(', ') + '';
                     }
-                }
+                },
+                buttonTitle: function(options, select) {return ""},
             });
         });
