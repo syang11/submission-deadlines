@@ -5,7 +5,6 @@ at [https://deadlines.info](https://deadlines.info).
 
 This is a [fork][2] with the following changes:
 
-- change from `yaml` to `csv` since it allows easier manipulation on local machine (filtering, sorting, ...)
 - add calendar overview for deadlines and conference dates (see [here](https://deadlines.info/calendar))
 - some design changes, e.g.
   - add direct link to conference website with Icons from [IcoMoon](https://icomoon.io/#icons-icomoon)
