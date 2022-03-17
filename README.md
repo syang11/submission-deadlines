@@ -1,22 +1,33 @@
-## AI Deadlines [![Build Status](https://travis-ci.com/abhshkdz/ai-deadlines.svg?branch=gh-pages)](https://travis-ci.com/abhshkdz/ai-deadlines)
+# Conference Deadlines
 
-Countdown timers to keep track of a bunch of CV/NLP/ML/RO conference deadlines.
+Countdown timers to keep track of a bunch of CV/NLP/ML/RO conference deadlines available
+at [https://deadlines.info](https://deadlines.info).
+
+This is a [fork][2] with the following changes:
+
+- change from `yaml` to `csv` since it allows easier manipulation on local machine (filtering, sorting, ...)
+- add calendar overview for deadlines and conference dates (see [here](https://deadlines.info/calendar))
+- some design changes, e.g.
+  - add direct link to conference website with Icons from [IcoMoon](https://icomoon.io/#icons-icomoon)
+  - add display of h-index and display of full conference name on hover (inspiration from [ad-deadlines.com][13])
+  - add display of conference ranking
 
 ## Contributing
 
-[![](https://sourcerer.io/fame/abhshkdz/abhshkdz/ai-deadlines/images/0)](https://sourcerer.io/fame/abhshkdz/abhshkdz/ai-deadlines/links/0)[![](https://sourcerer.io/fame/abhshkdz/abhshkdz/ai-deadlines/images/1)](https://sourcerer.io/fame/abhshkdz/abhshkdz/ai-deadlines/links/1)[![](https://sourcerer.io/fame/abhshkdz/abhshkdz/ai-deadlines/images/2)](https://sourcerer.io/fame/abhshkdz/abhshkdz/ai-deadlines/links/2)[![](https://sourcerer.io/fame/abhshkdz/abhshkdz/ai-deadlines/images/3)](https://sourcerer.io/fame/abhshkdz/abhshkdz/ai-deadlines/links/3)[![](https://sourcerer.io/fame/abhshkdz/abhshkdz/ai-deadlines/images/4)](https://sourcerer.io/fame/abhshkdz/abhshkdz/ai-deadlines/links/4)[![](https://sourcerer.io/fame/abhshkdz/abhshkdz/ai-deadlines/images/5)](https://sourcerer.io/fame/abhshkdz/abhshkdz/ai-deadlines/links/5)[![](https://sourcerer.io/fame/abhshkdz/abhshkdz/ai-deadlines/images/6)](https://sourcerer.io/fame/abhshkdz/abhshkdz/ai-deadlines/links/6)[![](https://sourcerer.io/fame/abhshkdz/abhshkdz/ai-deadlines/images/7)](https://sourcerer.io/fame/abhshkdz/abhshkdz/ai-deadlines/links/7)
-
 Contributions are very welcome!
 
-To keep things minimal, I'm only looking to list top-tier conferences in AI as per [conferenceranks.com][6] and my judgement calls. Please feel free to maintain a separate fork if you don't see your sub-field or conference of interest listed.
-
 To add or update a deadline:
-- Fork the repository
-- Update `_data/conferences.yml`
+
+- Fork the repository (you can also press `.` to open this repo in VS Code in your browser)
+- Update [`_data/conferences.csv`](_data/conferences.csv) (best done with MS Excel or similar)
 - Make sure it has the `title`, `year`, `id`, `link`, `deadline`, `timezone`, `date`, `place`, `sub` attributes
-    + See available timezone strings [here](https://momentjs.com/timezone/).
+  - See available timezone strings [here](https://momentjs.com/timezone/).
 - Optionally add a `note` and `abstract_deadline` in case the conference has a separate mandatory abstract deadline
 - Optionally add `hindex` (refers to h5-index from [here](https://scholar.google.com/citations?view_op=top_venues&vq=eng))
+- Optionally add `hindex` (refers to h5-index
+  from [Google](https://scholar.google.com/citations?view_op=top_venues&vq=eng)) or [Guide2Research](https://research.com/conference-rankings/computer-science/2021/machine-learning)
+- Optionally add `ranking` from [conference ranks](http://www.conferenceranks.com/)
+- sort data ascending by deadline
 - Example:
     ```yaml
     - title: BestConf
@@ -39,35 +50,42 @@ To add or update a deadline:
     ```
 - Send a pull request
 
-## Forks & other useful listings
+## Usage
 
-- [geodeadlin.es][3] by @LukasMosser
-- [neuro-deadlines][4] by @tbryn
-- [ai-challenge-deadlines][5] by @dieg0as
-- [CV-oriented ai-deadlines (with an emphasis on medical images)][8] by @duducheng
-- [es-deadlines (Embedded Systems, Computer Architecture, and Cyber-physical Systems)][9] by @AlexVonB and @k0nze
-- [2019-2020 International Conferences in AI, CV, DM, NLP and Robotics][10] by @JackieTseng
-- [ccf-deadlines][11] by @ccfddl
-- [netdeadlines.com][12] by @albertgranalcoz
-- [ad-deadlines.com][13] by @daniel-bogdoll
+### Host own website
+
+- fork the repo
+- adjust [`_config.yml`](_config.yml) with your URLs
+  ```yaml
+  domain: "https://<user-name>.github.io/"
+  baseurl: "/<repo-name>"
+  ```
+- remove [`CNAME`](CNAME)
+- adjust or remove [Impressum](impressum.html)
+- adjust the [`_data/conferences.csv`](_data/conferences.csv)
+- if you want a domain different from Github, check [this](https://dafero.wordpress.com/2020/02/19/how-to-configure-github-pages-with-a-custom-ionos-old-11-domain/)
+
+### Locally
+
+To test/develop the site locally with Docker:
+
+- Build
+
+  ```shell
+  docker build -t jekyll-cd .
+  ```
+
+- Run
+  ```shell
+  docker run --mount type=bind,source=${PWD},target=/app -p 4000:4000 -it --rm --name conference-deadlines jekyll-cd
+  ```
 
 ## License
 
-This project is licensed under [MIT][1].
+[AI Deadlines](https://github.com/abhshkdz/ai-deadlines): [MIT][1]
 
-It uses:
-
-- [IcoMoon Icons](https://icomoon.io/#icons-icomoon): [GPL](http://www.gnu.org/licenses/gpl.html) / [CC BY4.0](http://creativecommons.org/licenses/by/4.0/)
+[IcoMoon Icons](https://icomoon.io/#icons-icomoon): [GPL](http://www.gnu.org/licenses/gpl.html) / [CC BY4.0](http://creativecommons.org/licenses/by/4.0/)
 
 [1]: https://abhshkdz.mit-license.org/
 [2]: http://aideadlin.es/
-[3]: https://github.com/LukasMosser/geo-deadlines
-[4]: https://github.com/tbryn/neuro-deadlines
-[5]: https://github.com/dieg0as/ai-challenge-deadlines
-[6]: http://www.conferenceranks.com/#
-[8]: https://m3dv.github.io/ai-deadlines/
-[9]: https://ekut-es.github.io/es-deadlines/
-[10]: https://jackietseng.github.io/conference_call_for_paper/conferences.html
-[11]: https://ccfddl.github.io/
-[12]: https://netdeadlines.com/
 [13]: https://ad-deadlines.com/

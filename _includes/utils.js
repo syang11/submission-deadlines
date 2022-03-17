@@ -13,24 +13,52 @@ function addUtcTimeZones() {
     moment.tz.link(link);
   }
 }
-
 function update_filtering(data) {
-  var page_url = "{{site.baseurl}}";
   store.set("{{site.domain}}-subs", data.subs);
+  store.set("{{site.domain}}-rankings", data.rankings);
 
   $(".confItem").hide();
-  for (const j in data.all_subs) {
-    const s = data.all_subs[j];
-    const identifier = "." + s + "-conf";
-    if (data.subs.includes(s)) {
-      $(identifier).show();
+  for (const i in data.all_rankings) {
+    const r = data.all_rankings[i];
+    const ranking_active = data.rankings.includes(r);
+    for (const j in data.all_subs) {
+      const s = data.all_subs[j];
+      const sub_active = data.subs.includes(s);
+
+      const identifier = "." + s + "-conf." + r + "-ranking";
+      if (ranking_active && sub_active) {
+        $(identifier).show();
+      }
     }
   }
 
-  if (subs.length == 0) {
-    window.history.pushState("", "", page_url);
+  if (rankings.length == 0) {
+    if (subs.length == 0) {
+      window.history.pushState("", "", "{{site.baseurl}}");
+    } else {
+      window.history.pushState(
+        "",
+        "",
+        "{{site.baseurl}}/?sub=" + data.subs.join()
+      );
+    }
   } else {
-    window.history.pushState("", "", page_url + "/?sub=" + data.subs.join());
+    if (subs.length == 0) {
+      window.history.pushState(
+        "",
+        "",
+        "{{site.baseurl}}/" + "?ranking=" + data.rankings.join()
+      );
+    } else {
+      window.history.pushState(
+        "",
+        "",
+        "{{site.baseurl}}/?sub=" +
+          data.subs.join() +
+          "&ranking=" +
+          data.rankings.join()
+      );
+    }
   }
 }
 

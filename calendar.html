@@ -48,6 +48,23 @@ permalink: /calendar/
                 </select>
               </div>
             </div>
+            <div class="row align-items-md-center col-12 col-10-md">
+              <div class="col-12 col-md-5 filter-label">
+                <label for="ranking-select" class="form-label">
+                  Ranking Filter:
+                </label>
+              </div>
+                <div class="col-12 col-md-6">
+                  <select id="ranking-select" name="ranking-select" multiple="multiple"
+                    style="display: none;">
+                    {% for ranking in site.data.rankings %}
+                    <option value="{{ranking.ranking}}" id="ranking-{{ranking.ranking}}-checkbox">
+                            {{ranking.ranking}} Ranking
+                    </option>
+                    {% endfor %}
+                  </select>
+              </div>
+            </div>
           </div>
         </form>
       </div>
@@ -147,7 +164,12 @@ permalink: /calendar/
         conf_list = conf_list_all;
 
         // Render calendar
-        update_filtering({ subs: subs, all_subs: all_subs });
+        update_filtering({
+          subs: subs,
+          all_subs: all_subs,
+          rankings: rankings,
+          all_rankings: all_rankings,
+        });
       });
 
 

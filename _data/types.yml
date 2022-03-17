@@ -20,3 +20,6 @@
 - name: Data Mining
   sub: DM
   color: "#be0aff"
+- name: Applications
+  sub: APL
+  color: "#be0aff"

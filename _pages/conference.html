@@ -23,6 +23,8 @@ permalink:  /conference/
         <div class="row">
           <div class="col-sm-12">
             <span id="conf-subs" title="Conference subjects"></span>
+            <span id="conf-ranking" title="Conference ranking" class="conf-ranking"></span>
+            <span id="conf-h5" title="H5 Index" class="conf-h5"></span>
           </div>
         </div>
       </div>
@@ -40,6 +42,10 @@ permalink:  /conference/
             <img src="{{site.baseurl}}/static/img/203-earth.svg" class="badge-link" />
             <a id="conf-website" target="_blank" nohref></a>
           </div>
+          <div class="col-12" id="conf-wikicfp">
+            <img src="{{site.baseurl}}/static/img/033-books.svg" class="badge-link" />
+            More Information on <a id="conf-wikicfp-link" target="_blank" nohref></a><br>
+          </div>
           <div id="conf-paperslink-div" class="col-12">
             <img src="{{site.baseurl}}/static/img/033-books.svg" class="badge-link" />
             Accepted Papers:
@@ -56,6 +62,11 @@ permalink:  /conference/
             Download Conference deadline:
           </div>
           <div id="conference-deadline" class="calendar meta col-sm-12 col-md-6">
+          </div>
+          <div class="meta deadline col-sm-12 col-md-6">
+            Download Conference dates:
+          </div>
+          <div id="conference-dates" class="calendar meta col-sm-12 col-md-6">
           </div>
           <div class="meta deadline col-12 col-md-6">
             Deadline in timezone from conference website:
@@ -111,6 +122,23 @@ permalink:  /conference/
                 sub_element.textContent = sub2name[sub];
                 $('#conf-subs').append(sub_element);
               }
+              if ("{{conf.hindex}}" == "") {
+                $('#conf-h5').hide();
+              } else {
+                $('#conf-h5').text("{{conf.hindex}}");
+              }
+              if ("{{conf.ranking}}" == "") {
+                $('#conf-ranking').hide();
+              } else {
+                $('#conf-ranking').text("{{conf.ranking}}");
+              }
+              if ("{{conf.wikicfp}}" == "") {
+                $('#conf-wikicfp').hide();
+              } else {
+                $('#conf-wikicfp-link').text("WikiCFP");
+                $('#conf-wikicfp-link').attr('href', "{{conf.wikicfp}}");
+              }
+
               // other
               $('#conf-date').text("{{conf.date}}");
               $('#conf-place').text("{{conf.place}}");
@@ -143,7 +171,7 @@ permalink:  /conference/
                 var timezone = {% if conf.timezone %}"{{conf.timezone}}" {% else %} "America/New_York" {% endif %};
                 var confDeadline = moment.tz("{{conf.deadline}}", timezone);
 
-                // add calendar 
+                // Add calendar download for conference deadline 
                 var conferenceDeadlineCalendar = createCalendarFromObject({
                   id:  '{{conf.id}}',
                   title: '{{conf.title}} {{conf.year}} deadline',
@@ -151,6 +179,22 @@ permalink:  /conference/
                   duration: 60,
                 })
                 document.querySelector('#conference-deadline').appendChild(conferenceDeadlineCalendar);
+
+                // Add calendar download for conference dates
+                var confStartDate = moment.tz("{{conf.start}} 09:01", timezone);
+                var confEndDate = moment.tz("{{conf.end}} 16:00", timezone);
+                var conferenceDatesCalendar = createCalendar({
+                  options: {
+                    class: 'calendar-obj',
+                  },
+                  data: {
+                    title: 'Conference: {{conf.title}} {{conf.year}}',
+                    start: confStartDate.toDate(),
+                    end: confEndDate.toDate(),
+                  }
+                });
+                document.querySelector('#conference-dates').appendChild(conferenceDatesCalendar);
+
 
                 // render countdown timer
                 $('#conf-timer').countdown(confDeadline.toDate(), function(event) {
