@@ -1,15 +1,15 @@
-title: AI Conference Deadlines
+title: Biomedical AI Conference Deadlines
 description: Countdowns to CV/NLP/ML/Robotics/AI conference deadlines. Overview of deadlines and conference dates in a calendar.
-author: Alexander Naumann
+author: Shu Yang
 
-domain: "deadlines.info"
-baseurl: ""
+domain: "https://syang11.github.io/"
+baseurl: "/submission-deadlines"
 
-twitter:
-  username: AlexN4u
-  hashtag: machinelearning
-github_username: a-nau
-github_repo: conference-deadlines
+# twitter:
+#   username: AlexN4u
+#   hashtag: machinelearning
+github_username: syang11
+github_repo: submission-deadlines
 
 markdown: kramdown
 ga_id: UA-166050497-2
