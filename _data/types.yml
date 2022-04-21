@@ -14,7 +14,7 @@
 - name: IMAGING
   sub: IM
   color: "#0aff99"
-- name: Alzheimers Disease
+- name: Alzheimer's Disease
   sub: AD
   color: "#580aff"
 - name: Data Mining
