@@ -24,6 +24,8 @@
   abstract_deadline: 2022/04/17 23:59
   timezone: America/New_York
   date: May 22 - May 25, 2022
+  start: 5/22/2022
+  end: 5/25/2022
   place: La Jolla, USA
   sub: BI
   note: Update submission info for 2023
@@ -36,6 +38,8 @@
   deadline: 2022/04/21 23:59
   timezone: UTC+14
   date: July 10 - July 14, 2022
+  start: 7/10/2022
+  end: 7/14/2022
   place: Madison, USA
   sub: BI
   note: 'Abstract Submission Deadline: 21 April 2022'
@@ -49,6 +53,8 @@
   abstract_deadline: 2022/04/25 23:59
   timezone: America/New_York
   date: July 31 - August 4, 2022
+  start: 7/31/2022
+  end: 8/4/2022
   place: San Diego, USA
   sub: AD
   note: Update submission info for 2023
@@ -62,6 +68,8 @@
   abstract_deadline: 2022/05/14 23:59
   timezone: America/New_York
   date: August 7 - August 10, 2022
+  start: 8/7/2022
+  end: 8/10/2022
   place: Chicago, USA
   sub: BI
   note: Update submission info for 2023
@@ -74,6 +82,8 @@
   deadline: 2022/3/9 23:59
   timezone: America/New_York
   date: November 5 - November 9, 2022
+  start: 11/5/2022
+  end: 11/9/2022
   place: Washington DC, USA
   sub: BI
   note: Update submission info for 2023
@@ -106,6 +116,8 @@
   timezone: America/New_York
   place: Online
   date: December 9 - December 12, 2022
+  start: 12/9/2022
+  end: 12/12/2022
   hindex: 198
   sub: ML
   note: First ever conference in 2022
@@ -118,6 +130,8 @@
   abstract_deadline: 2022/12/05 23:59
   timezone: America/New_York
   date: January 3 - January 7, 2023
+  start: 1/3/2023
+  end: 1/7/2023
   place: The Big Island of Hawaii, USA
   sub: BI
   note: Other (workshop, travel award, etc.) dates info see <a href='https://psb.stanford.edu/keydates/'>here</a>.
@@ -130,6 +144,8 @@
   deadline: 2022/08/21 23:59
   timezone: America/New_York
   date: December 6 - December 9, 2022
+  start: 12/6/2022
+  end: 12/9/2022
   place: Las Vegas, USA
   sub: BI
   note: No abstract submission info yet?
@@ -176,6 +192,8 @@
   deadline: 2023/02/10 23:59
   timezone: UTC-12
   date: August 14-18, 2023
+  start: 8/14/2023
+  end: 8/18/2023
   place: TBD
   sub: DM
   full_name: Knowledge Discovery and Data Mining
