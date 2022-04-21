@@ -16,18 +16,18 @@
 #   sub: ML
 #   note: Mandatory abstract deadline on August 30, 2021
 
- - title: RECOMB
-  year: 2022
-  id: recomb22
-  link: https://recomb2022.net/
-  deadline: 2021/11/04 23:59
-  abstract_deadline: 2022/04/17 23:59
-  timezone: America/New_York
-  date: May 22 - May 25, 2022
-  place: La Jolla, USA
-  sub: BI
-  note: Update submission info for 2023
-  full_name: Annual International Conference on Research in Computational Molecular Biology
+#  - title: RECOMB
+#   year: 2022
+#   id: recomb22
+#   link: https://recomb2022.net/
+#   deadline: 2021/11/04 23:59
+#   abstract_deadline: 2022/04/17 23:59
+#   timezone: America/New_York
+#   date: May 22 - May 25, 2022
+#   place: La Jolla, USA
+#   sub: BI
+#   note: Update submission info for 2023
+#   full_name: Annual International Conference on Research in Computational Molecular Biology
   
 - title: ISMB
   year: 2022
