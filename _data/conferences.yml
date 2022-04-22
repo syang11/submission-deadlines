@@ -106,6 +106,20 @@
   ranking: A
   note: Mandatory abstract deadline on May 16, 2022
   
+- title: ASHG
+  year: 2022
+  id: ashg22
+  link: https://www.ashg.org/meetings/2022-annual-meeting/
+  deadline: 2022/06/9 09:59
+  timezone: America/New_York
+  date: October 25 - October 29, 2022
+  start: 10/25/2022
+  end: 10/29/2022
+  place: Los Angeles, USA
+  sub: GM
+  note: Hotel reservations Opens June 1; Deadline is June 8
+  full_name: American Society of Human Genetics
+  
 - title: LoG
   year: 2022
   id: log22
